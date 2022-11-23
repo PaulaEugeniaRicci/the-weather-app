@@ -17,7 +17,7 @@ const CardForecast = ( ) => {
   
   const searchForecast = async(code) =>{
     try{
-      const api = await fetch("http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=false&metric=true")
+      const api = await fetch("https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=false&metric=true")
       const response = await api.json()
       if (response.size === 0){
         console.log("no hay resultados")

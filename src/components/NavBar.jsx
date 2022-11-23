@@ -31,7 +31,7 @@ const NavBar = () => {
   const searchRegion = async() =>{
     setSelect(!select)
     try{
-      const api = await fetch("http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="+API_KEY+"&q="+region.input+"&language="+lang)
+      const api = await fetch("https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey="+API_KEY+"&q="+region.input+"&language="+lang)
       const response = await api.json()
       if (response.size === 0){
         console.log("no hay resultados")

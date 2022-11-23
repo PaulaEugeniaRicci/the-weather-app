@@ -19,7 +19,7 @@ const CardContainer = ( ) => {
   useEffect(()=>{
     const searchConditionsByRegion = async(code) =>{
       try{
-        const api = await fetch("http://dataservice.accuweather.com/currentconditions/v1/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true")
+        const api = await fetch("https://dataservice.accuweather.com/currentconditions/v1/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true")
         const response = await api.json()
         if (response.size === 0){
           console.log("no hay resultados")
@@ -43,7 +43,7 @@ const CardContainer = ( ) => {
     }
     const searchForecastByRegion = async(code) =>{
       try{
-        const api = await fetch("http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true&metric=true")
+        const api = await fetch("https://dataservice.accuweather.com/forecasts/v1/daily/1day/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true&metric=true")
         const response = await api.json()
         if (response.size === 0){
           console.log("no hay resultados")
