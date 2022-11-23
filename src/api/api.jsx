@@ -1,2 +1,2 @@
-export const API_KEY = process.env.REACT_APP_API_KEY
+export const API_KEY = 'Yobu0AI8sz69IREDGTbrVkmxbclfkS8c'
 export const lang = 'es-ar'
