@@ -1,0 +1,29 @@
+
+  .transparent{
+    background: rgba(0, 0, 0, 0.5);
+    font-weight:600;
+    color: white;
+  }
+
+  .min-h-screen.evening{
+    background-image: linear-gradient(180deg, #063660, #2b6997);
+  }
+
+  .gradient.evening{
+    background-image: url("../img/mostly-clear-night.webp");
+    font-weight:600;
+    color: white;
+  }
+
+  .evening{
+    background-color: #022d50;
+    color: #022d50;
+  }
+  .evening input{
+    background-color: #355773;
+    color: white;
+    text-align: center;
+  }
+  .evening input:focus{
+    background-color: #355773;
+  }
