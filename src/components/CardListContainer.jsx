@@ -13,58 +13,57 @@ const CardContainer = ( ) => {
 
   const {key} = useParams();
   const [conditions, setConditions] = useState([])
-  const [description, setDescription] = useState({place:"Caballito", city: 'Buenos Aires'})
+  const [description, setDescription] = useState({place:"Caballito", city: 'Buenos Aires', country: 'Argentina'})
   const [errorFetch, setError] = useState(false)
-  
-  const searchConditionsByRegion = async(code) =>{
-    try{
-      const api = await fetch("http://dataservice.accuweather.com/currentconditions/v1/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true")
-      const response = await api.json()
-      if (response.size === 0){
-        console.log("no hay resultados")
-      }
-      const resp = response[0]
-      setConditions(
-        conditions => 
-        ({...conditions, 
-        weather: resp.WeatherText,
-        weatherIcon: resp.WeatherIcon,
-        realFeelTemp: resp.RealFeelTemperature.Metric.Value,
-        dewPoint: resp.DewPoint.Metric.Value,
-        wind: resp.Wind.Speed.Metric.Value,
-        humidity: resp.RelativeHumidity,
-        uvIndex: resp.UVIndex,
-        pressure: resp.Pressure.Metric.Value,
-        todayTemp: resp.Temperature.Metric.Value})
-      )
-    }
-    catch(error) { setError(!errorFetch) }; 
-  }
-
-  const searchForecastByRegion = async(code) =>{
-    try{
-      const api = await fetch("http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true&metric=true")
-      const response = await api.json()
-      if (response.size === 0){
-        console.log("no hay resultados")
-      }
-      setConditions(
-        conditions => 
-        ({...conditions, 
-          maxTemp: response.DailyForecasts[0].Temperature.Maximum.Value,
-          minTemp: response.DailyForecasts[0].Temperature.Minimum.Value,
-          sunRise: response.DailyForecasts[0].Sun.Rise.slice(11, 16),
-          sunSet: response.DailyForecasts[0].Sun.Set.slice(11, 16),
-          airQuality: response.DailyForecasts[0].AirAndPollen[0].Category,
-          airValue: response.DailyForecasts[0].AirAndPollen[0].Value,
-          grass: response.DailyForecasts[0].AirAndPollen[1].Category,
-        })
-      )
-    }
-    catch(error) { setError(!errorFetch) }; 
-  }
 
   useEffect(()=>{
+    const searchConditionsByRegion = async(code) =>{
+      try{
+        const api = await fetch("http://dataservice.accuweather.com/currentconditions/v1/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true")
+        const response = await api.json()
+        if (response.size === 0){
+          console.log("no hay resultados")
+        }
+        const resp = response[0]
+        setConditions(
+          conditions => 
+          ({...conditions, 
+          weather: resp.WeatherText,
+          weatherIcon: resp.WeatherIcon,
+          realFeelTemp: resp.RealFeelTemperature.Metric.Value,
+          dewPoint: resp.DewPoint.Metric.Value,
+          wind: resp.Wind.Speed.Metric.Value,
+          humidity: resp.RelativeHumidity,
+          uvIndex: resp.UVIndex,
+          pressure: resp.Pressure.Metric.Value,
+          todayTemp: resp.Temperature.Metric.Value})
+        )
+      }
+      catch(error) { setError( e=> !e) }; 
+    }
+    const searchForecastByRegion = async(code) =>{
+      try{
+        const api = await fetch("http://dataservice.accuweather.com/forecasts/v1/daily/1day/"+code+"?apikey="+API_KEY+"&language="+lang+"&details=true&metric=true")
+        const response = await api.json()
+        if (response.size === 0){
+          console.log("no hay resultados")
+        }
+        setConditions(
+          conditions => 
+          ({...conditions, 
+            maxTemp: response.DailyForecasts[0].Temperature.Maximum.Value,
+            minTemp: response.DailyForecasts[0].Temperature.Minimum.Value,
+            sunRise: response.DailyForecasts[0].Sun.Rise.slice(11, 16),
+            sunSet: response.DailyForecasts[0].Sun.Set.slice(11, 16),
+            airQuality: response.DailyForecasts[0].AirAndPollen[0].Category,
+            airValue: response.DailyForecasts[0].AirAndPollen[0].Value,
+            grass: response.DailyForecasts[0].AirAndPollen[1].Category,
+          })
+        )
+      }
+      catch(error) { setError ( e => !e) }; 
+    }
+
     if (key){
       const items = JSON.parse(localStorage.getItem('place'));
       if (items){ setDescription(items) }
