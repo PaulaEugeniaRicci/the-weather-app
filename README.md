@@ -15,7 +15,7 @@ La consigna es diseñar una aplicación con React que comprenda:
 - Uso de css en cualquier variante, cualquier framework
 - Persistencia local
 
-La aplicación elegida está inspirada en la web de The Weather Channel©, la API que provee los datos corresponde © 2022 AccuWeather.
+La aplicación elegida está inspirada en la web de The Weather Channel©, la API que provee los datos corresponde a ©2022 AccuWeather.
 
 # Tecnologías
 - React.js
